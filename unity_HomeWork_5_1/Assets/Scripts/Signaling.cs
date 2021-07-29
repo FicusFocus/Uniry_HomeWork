@@ -2,36 +2,37 @@
 
 public class Signaling : MonoBehaviour
 {
-    [SerializeField] private AudioClip _audioClip;
-
     private bool _alreadyPlay = false;
     private AudioSource _audio;
 
     private void Start()
     {
         _audio = GetComponent<AudioSource>();
-        _audio.volume = 0.0f;
     }
 
     private void Update()
     {
         if (_alreadyPlay)
             _audio.volume += 0.1f * Time.deltaTime;
+
+        if (!_alreadyPlay)
+            _audio.volume -= 0.1f * Time.deltaTime;
+
+        if (_audio.volume == 0.0f)
+            _audio.Pause();
     }
 
     public void Playing()
     {
         if (!_alreadyPlay)
         {
-            _audio.PlayOneShot(_audioClip);
+            _audio.Play();
             _alreadyPlay = true;
         }
     }
 
     public void StopPlaying()
     {
-        Debug.Log("Stop");
-        _audio.Pause();
-        _audio.volume = 0.0f;
+        _alreadyPlay = false;
     }
 }

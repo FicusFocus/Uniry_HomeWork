@@ -7,25 +7,17 @@ public class DoorOpener : MonoBehaviour
     [SerializeField] private UnityEvent _finded;
     [SerializeField] private UnityEvent _notFinded;
 
-    private bool _alreadyOpen;
-
-    private void Update()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        RaycastHit2D findPerson = Physics2D.Raycast(transform.position, Vector2.left, 1f);
+        transform.localEulerAngles = new Vector3(0, 30, 0);
 
-        if (findPerson && !_alreadyOpen)
-        {
-            transform.localEulerAngles = new Vector3(0, 30, 0);
+        if (collision.gameObject.tag == "Thief")
             _finded?.Invoke();
-            _alreadyOpen = true;
-            Debug.Log("Find");
-        }
-        else if(!findPerson)
-        {
-            Debug.Log("notFind");
-            _notFinded?.Invoke();
-            _alreadyOpen = false;
-            transform.localEulerAngles = new Vector3(0, 0, 0);
-        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        transform.localEulerAngles = new Vector3(0, 0, 0);
+        _notFinded?.Invoke();
     }
 }
