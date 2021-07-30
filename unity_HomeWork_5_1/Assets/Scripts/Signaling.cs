@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Signaling : MonoBehaviour
 {
+    [SerializeField] private float _volumeChange;
+
     private bool _alreadyPlay = false;
     private AudioSource _audio;
 
@@ -10,16 +13,26 @@ public class Signaling : MonoBehaviour
         _audio = GetComponent<AudioSource>();
     }
 
-    private void Update()
+    private IEnumerator AddVolume()
     {
-        if (_alreadyPlay)
-            _audio.volume += 0.1f * Time.deltaTime;
+        for (float i = 0; i < 1; i+= 0.1f)
+        {
+            _audio.volume += _volumeChange * Time.deltaTime;
+            yield return null;
+        }
+    }
 
-        if (!_alreadyPlay)
-            _audio.volume -= 0.1f * Time.deltaTime;
+    private IEnumerator TurnDownTheSound()
+    {
+        for (float i = 0; i < 1; i += 0.1f)
+        {
+            _audio.volume -= _volumeChange * Time.deltaTime;
 
-        if (_audio.volume == 0.0f)
-            _audio.Pause();
+            if (_audio.volume == 0)
+                _audio.Pause();
+
+            yield return null;
+        }
     }
 
     public void Playing()
@@ -27,12 +40,16 @@ public class Signaling : MonoBehaviour
         if (!_alreadyPlay)
         {
             _audio.Play();
+            StartCoroutine(AddVolume());
+            StopCoroutine(TurnDownTheSound());
             _alreadyPlay = true;
         }
     }
 
     public void StopPlaying()
     {
+        StopCoroutine(AddVolume());
+        StartCoroutine(TurnDownTheSound());
         _alreadyPlay = false;
     }
 }
