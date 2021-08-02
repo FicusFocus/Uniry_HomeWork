@@ -8,18 +8,39 @@ public class EnemyCreator : MonoBehaviour
     [SerializeField] private GameObject _enemy;
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
 
-    private System.Random rand = new System.Random();
+    private System.Random _rand = new System.Random();
     private bool _isenemyCreate = true;
 
     private void Start()
     {
-        InstantiateNewEnemy();
+        StartCoroutine(InstantiateNewEnemy());
+    }
+
+    private void FixedUpdate()
+    {
+        var enemyes = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (enemyes.Length > _spawnPoints.Count-1)
+            StartCoroutine(DestroyEnemy(enemyes));
+    }
+
+    private IEnumerator DestroyEnemy(GameObject[] enemyes)
+    {
+        foreach (var enemy in enemyes)
+        {
+            Destroy(enemy);
+
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     private IEnumerator InstantiateNewEnemy()
     {
-        GameObject newEnemy = Instantiate(_enemy, _spawnPoints[rand.Next(0, _spawnPoints.Count)].position, Quaternion.identity);
+        while (_isenemyCreate)
+        {
+            Instantiate(_enemy, _spawnPoints[_rand.Next(0, _spawnPoints.Count)].position, Quaternion.identity);
 
-        yield return null;
+            yield return new WaitForSeconds(2f);
+        }
     }
 }
