@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Скорее всего куротинана создание останется, 
+//либо создание врагов перенесется в update, а куротина останется для ожидания.
+
 public class EnemyCreator : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _enemyColor;
-    [SerializeField] private GameObject _enemy;
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
+    [SerializeField] private SpriteRenderer _enemyColor;
+    [SerializeField]private float _waitingTime;
+    [SerializeField] private Enemy _enemy;
 
-    private System.Random _rand = new System.Random();
     private bool _isenemyCreate = true;
 
     private void Start()
@@ -18,29 +21,35 @@ public class EnemyCreator : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var enemyes = GameObject.FindGameObjectsWithTag("Enemy");
+        var enemyes = GetComponents<Enemy>();
 
         if (enemyes.Length > _spawnPoints.Count-1)
             StartCoroutine(DestroyEnemy(enemyes));
     }
 
-    private IEnumerator DestroyEnemy(GameObject[] enemyes)
+    private IEnumerator DestroyEnemy(Enemy[] enemyes)
     {
+        var wait = new WaitForSeconds(_waitingTime / 2);
+
         foreach (var enemy in enemyes)
         {
             Destroy(enemy);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return wait;
         }
     }
 
     private IEnumerator InstantiateNewEnemy()
     {
+        var wait = new WaitForSeconds(_waitingTime);
+
         while (_isenemyCreate)
         {
-            Instantiate(_enemy, _spawnPoints[_rand.Next(0, _spawnPoints.Count)].position, Quaternion.identity);
+            int randomSpawnPositionNumber = Random.Range(0, _spawnPoints.Count + 1);
 
-            yield return new WaitForSeconds(2f);
+            Instantiate(_enemy, _spawnPoints[randomSpawnPositionNumber].position, Quaternion.identity);
+
+            yield return wait;
         }
     }
 }
