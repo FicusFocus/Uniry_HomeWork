@@ -64,8 +64,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\DoorOpener.cs" />
-    <Compile Include="Assets\Scripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\MoveController.cs" />
     <Compile Include="Assets\Scripts\Signaling.cs" />
+    <Compile Include="Assets\Scripts\Thief.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/unity/Projects/Uniry_HomeWork/unity_HomeWork_5_1/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

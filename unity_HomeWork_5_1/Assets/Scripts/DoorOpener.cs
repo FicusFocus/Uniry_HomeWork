@@ -11,7 +11,7 @@ public class DoorOpener : MonoBehaviour
     {
         transform.localEulerAngles = new Vector3(0, 30, 0);
 
-        if (collision.gameObject.tag == "Thief")
+        if (collision.TryGetComponent<Thief>(out Thief thief))
             _finded?.Invoke();
     }
 

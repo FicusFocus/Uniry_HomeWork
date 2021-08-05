@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
+
 public class Signaling : MonoBehaviour
 {
-    [SerializeField] private float _volumeChange;
+    [SerializeField] private float _forceOfSoundChange;
 
-    private bool _alreadyPlay = false;
     private AudioSource _audio;
+    private IEnumerator _reduseVolume;
+    private IEnumerator _addVolume;
+    private bool _alreadyPlay = false;
+    private float _maxVolume = 1f;
+    private float _minVolume = 0.01f;
 
     private void Start()
     {
@@ -15,18 +21,18 @@ public class Signaling : MonoBehaviour
 
     private IEnumerator AddVolume()
     {
-        for (float i = 0; i < 1; i+= 0.1f)
+        while (_audio.volume < _maxVolume)
         {
-            _audio.volume += _volumeChange * Time.deltaTime;
+            _audio.volume += _forceOfSoundChange * Time.deltaTime;
             yield return null;
         }
     }
 
-    private IEnumerator TurnDownTheSound()
+    private IEnumerator ReduceVolume()
     {
-        for (float i = 0; i < 1; i += 0.1f)
+        while (_audio.volume > _minVolume)
         {
-            _audio.volume -= _volumeChange * Time.deltaTime;
+            _audio.volume -= _forceOfSoundChange * Time.deltaTime;
 
             if (_audio.volume == 0)
                 _audio.Pause();
@@ -40,16 +46,46 @@ public class Signaling : MonoBehaviour
         if (!_alreadyPlay)
         {
             _audio.Play();
-            StartCoroutine(AddVolume());
-            StopCoroutine(TurnDownTheSound());
             _alreadyPlay = true;
+
+            if (_reduseVolume != null)
+            {
+                StopCoroutine(_reduseVolume);
+                _reduseVolume = null;
+            }
+
+            if (_addVolume != null)
+            {
+                StopCoroutine(_addVolume);
+                _addVolume = null;
+            }
+            else
+            {
+                _addVolume = AddVolume();
+                StartCoroutine(_addVolume);
+            }
         }
     }
 
     public void StopPlaying()
     {
-        StopCoroutine(AddVolume());
-        StartCoroutine(TurnDownTheSound());
         _alreadyPlay = false;
+
+        if (_addVolume != null)
+        {
+            StopCoroutine(_addVolume);
+            _addVolume = null;
+        }
+
+        if (_reduseVolume != null)
+        {
+            StopCoroutine(_reduseVolume);
+            _reduseVolume = null;
+        }
+        else
+        {
+            _reduseVolume = ReduceVolume();
+            StartCoroutine(_reduseVolume);
+        }
     }
 }

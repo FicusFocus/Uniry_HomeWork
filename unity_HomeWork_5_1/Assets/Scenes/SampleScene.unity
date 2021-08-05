@@ -737,7 +737,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 8551610732793173124}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2106620172}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8bd370f776a3d4041a0b1bfde7ab3365, type: 3}
@@ -889,7 +889,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 755781d58a23b7542b6a527d922f37fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _volumeChange: 0.1
+  _forceOfSoundChange: 0.1
 --- !u!1 &1267307382
 GameObject:
   m_ObjectHideFlags: 0
@@ -1135,6 +1135,30 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 8551610732793173124}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2106620172 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8551610733959419507, guid: e62a9e1e7b997e940b5c264869c47b46,
+    type: 3}
+  m_PrefabInstance: {fileID: 8551610732793173124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2106620175 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8551610733959419513, guid: e62a9e1e7b997e940b5c264869c47b46,
+    type: 3}
+  m_PrefabInstance: {fileID: 8551610732793173124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2106620176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2106620172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95feecfc862ee6846afaacd3dd86ac5e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8551610732793173124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1451,5 +1475,15 @@ PrefabInstance:
       propertyPath: _collider2D
       value: 
       objectReference: {fileID: 1216378200}
+    - target: {fileID: 8823059162442657451, guid: 5281884772958dc4eb0c7179dd2c252f,
+        type: 3}
+      propertyPath: _thief
+      value: 
+      objectReference: {fileID: 2106620172}
+    - target: {fileID: 8823059162442657451, guid: 5281884772958dc4eb0c7179dd2c252f,
+        type: 3}
+      propertyPath: _thiefPosition
+      value: 
+      objectReference: {fileID: 2106620175}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5281884772958dc4eb0c7179dd2c252f, type: 3}
