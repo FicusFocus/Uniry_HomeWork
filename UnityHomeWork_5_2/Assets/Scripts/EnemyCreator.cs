@@ -2,16 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//Скорее всего куротинана создание останется, 
-//либо создание врагов перенесется в update, а куротина останется для ожидания.
-
 public class EnemyCreator : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
-    [SerializeField] private SpriteRenderer _enemyColor;
-    [SerializeField]private float _waitingTime;
-    [SerializeField] private Enemy _enemy;
+    [SerializeField] private Enemy _template;
+    [SerializeField] private float _waitingTime;
 
+    private List<Enemy> _enemyes = new List<Enemy>();
     private bool _isenemyCreate = true;
 
     private void Start()
@@ -19,37 +16,36 @@ public class EnemyCreator : MonoBehaviour
         StartCoroutine(InstantiateNewEnemy());
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        var enemyes = GetComponents<Enemy>();
-
-        if (enemyes.Length > _spawnPoints.Count-1)
-            StartCoroutine(DestroyEnemy(enemyes));
+        if (_enemyes.Count > _spawnPoints.Count-1)
+            StartCoroutine(DestroyEnemy());
     }
 
-    private IEnumerator DestroyEnemy(Enemy[] enemyes)
+    private IEnumerator DestroyEnemy()
     {
-        var wait = new WaitForSeconds(_waitingTime / 2);
+        var waitingTime = new WaitForSeconds(_waitingTime / 2);
 
-        foreach (var enemy in enemyes)
+        foreach (var enemy in _enemyes)
         {
             Destroy(enemy);
 
-            yield return wait;
+            yield return waitingTime;
         }
     }
 
     private IEnumerator InstantiateNewEnemy()
     {
-        var wait = new WaitForSeconds(_waitingTime);
+        var waitingTime = new WaitForSeconds(_waitingTime);
 
         while (_isenemyCreate)
         {
-            int randomSpawnPositionNumber = Random.Range(0, _spawnPoints.Count + 1);
+            int randomSpawnPositionNumber = Random.Range(0, _spawnPoints.Count);
 
-            Instantiate(_enemy, _spawnPoints[randomSpawnPositionNumber].position, Quaternion.identity);
+            var newEnemy = Instantiate(_template, _spawnPoints[randomSpawnPositionNumber].position, Quaternion.identity);
+            _enemyes.Add(newEnemy);
 
-            yield return wait;
+            yield return waitingTime;
         }
     }
 }

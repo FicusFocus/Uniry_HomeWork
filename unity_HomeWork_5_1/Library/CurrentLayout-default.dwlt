@@ -200,7 +200,7 @@ MonoBehaviour:
   m_MinSize: {x: 713, y: 494}
   m_MaxSize: {x: 18008, y: 14044}
   vertical: 0
-  controlID: 153
+  controlID: 155
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -495,7 +495,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 99}
     m_SelectedIDs: a03c0000
     m_LastClickedID: 15520
-    m_ExpandedIDs: 00000000342d0000b02d0000c82d0000682e0000b62e0000c42e0000fc2e00000c2f0000302f00003c30000058300000b4300000fe3000002c310000b0320000
+    m_ExpandedIDs: 00000000342d0000b02d0000c82d0000682e0000b62e0000c42e0000fc2e0000302f00003c30000058300000b4300000fe3000002c310000b0320000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -526,18 +526,18 @@ MonoBehaviour:
     m_ExpandedIDs: ffffffff00000000342d0000b02d0000c82d0000682e0000b62e0000c42e0000fc2e0000302f00003c30000058300000b4300000fe3000002c310000b0320000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: DoorOpener
-      m_OriginalName: DoorOpener
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 11406
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
