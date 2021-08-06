@@ -22,6 +22,7 @@ public class MoveController : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().enabled = true;
         }
+
         if (Input.GetKey(KeyCode.D))
         {
             MoveToTarget(_housePosition);

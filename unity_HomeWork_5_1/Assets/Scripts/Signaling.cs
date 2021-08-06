@@ -54,16 +54,8 @@ public class Signaling : MonoBehaviour
                 _reduseVolume = null;
             }
 
-            if (_addVolume != null)
-            {
-                StopCoroutine(_addVolume);
-                _addVolume = null;
-            }
-            else
-            {
-                _addVolume = AddVolume();
-                StartCoroutine(_addVolume);
-            }
+            _addVolume = AddVolume();
+            StartCoroutine(_addVolume);
         }
     }
 
@@ -77,15 +69,7 @@ public class Signaling : MonoBehaviour
             _addVolume = null;
         }
 
-        if (_reduseVolume != null)
-        {
-            StopCoroutine(_reduseVolume);
-            _reduseVolume = null;
-        }
-        else
-        {
-            _reduseVolume = ReduceVolume();
-            StartCoroutine(_reduseVolume);
-        }
+        _reduseVolume = ReduceVolume();
+        StartCoroutine(_reduseVolume);
     }
 }
