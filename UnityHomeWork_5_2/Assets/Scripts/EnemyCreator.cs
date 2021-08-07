@@ -7,45 +7,35 @@ public class EnemyCreator : MonoBehaviour
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
     [SerializeField] private Enemy _template;
     [SerializeField] private float _waitingTime;
+    [SerializeField] private int _maxEnemyCount;
 
     private List<Enemy> _enemyes = new List<Enemy>();
-    private bool _isenemyCreate = true;
+    private float _nextWaitingtime;
 
     private void Start()
     {
-        StartCoroutine(InstantiateNewEnemy());
     }
 
     private void Update()
     {
-        if (_enemyes.Count > _spawnPoints.Count-1)
-            StartCoroutine(DestroyEnemy());
-    }
-
-    private IEnumerator DestroyEnemy()
-    {
-        var waitingTime = new WaitForSeconds(_waitingTime / 2);
-
-        foreach (var enemy in _enemyes)
+        int randomSpawnPositionNumber = Random.Range(0, _spawnPoints.Count);
+        if (Time.time > _nextWaitingtime)
         {
-            Destroy(enemy);
+            _nextWaitingtime += _waitingTime;
 
-            yield return waitingTime;
+            Instantiate(_template, _spawnPoints[randomSpawnPositionNumber].position, Quaternion.identity);
         }
-    }
 
-    private IEnumerator InstantiateNewEnemy()
-    {
-        var waitingTime = new WaitForSeconds(_waitingTime);
+        var enemyes = FindObjectsOfType<Enemy>();
 
-        while (_isenemyCreate)
+        if (enemyes.Length > _maxEnemyCount)
         {
-            int randomSpawnPositionNumber = Random.Range(0, _spawnPoints.Count);
+            foreach (var enemy in enemyes)
+            {
+                Debug.Log("why not delete");
 
-            var newEnemy = Instantiate(_template, _spawnPoints[randomSpawnPositionNumber].position, Quaternion.identity);
-            _enemyes.Add(newEnemy);
-
-            yield return waitingTime;
+                Destroy(enemy);
+            }
         }
     }
 }

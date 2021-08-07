@@ -333,6 +333,7 @@ MonoBehaviour:
   _template: {fileID: -3122854470787898103, guid: 9182ee09eec42214080067175ddb9da6,
     type: 3}
   _waitingTime: 2
+  _maxEnemyCount: 3
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
