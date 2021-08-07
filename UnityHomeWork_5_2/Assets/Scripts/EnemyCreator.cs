@@ -5,16 +5,12 @@ using UnityEngine;
 public class EnemyCreator : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPoints = new List<Transform>();
-    [SerializeField] private Enemy _template;
+    [SerializeField] private Enemy _EnemyTemplate;
     [SerializeField] private float _waitingTime;
     [SerializeField] private int _maxEnemyCount;
 
     private List<Enemy> _enemyes = new List<Enemy>();
     private float _nextWaitingtime;
-
-    private void Start()
-    {
-    }
 
     private void Update()
     {
@@ -23,19 +19,28 @@ public class EnemyCreator : MonoBehaviour
         {
             _nextWaitingtime += _waitingTime;
 
-            Instantiate(_template, _spawnPoints[randomSpawnPositionNumber].position, Quaternion.identity);
-        }
+            var newEnemy = Instantiate(_EnemyTemplate, _spawnPoints[randomSpawnPositionNumber].position, Quaternion.identity);
+            _enemyes.Add(newEnemy);
+        }        
 
-        var enemyes = FindObjectsOfType<Enemy>();
-
-        if (enemyes.Length > _maxEnemyCount)
+        if (_enemyes.Count > _maxEnemyCount)
         {
-            foreach (var enemy in enemyes)
+            foreach (var enemy in _enemyes)
             {
-                Debug.Log("why not delete");
-
                 Destroy(enemy);
             }
         }
+
+        // работает
+        //var enemyes = GameObject.FindGameObjectsWithTag("Enemy");
+
+        //if (enemyes.Length > _maxEnemyCount)
+        //{
+        //    foreach (var enemy in enemyes)
+        //    {
+        //        Debug.Log("must be delete");
+        //        Destroy(enemy);
+        //    }
+        //}
     }
 }
