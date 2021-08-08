@@ -27,20 +27,10 @@ public class EnemyCreator : MonoBehaviour
         {
             foreach (var enemy in _enemyes)
             {
-                Destroy(enemy);
+                enemy.AutoDestroy();
             }
+
+            _enemyes.Clear();
         }
-
-        // работает
-        //var enemyes = GameObject.FindGameObjectsWithTag("Enemy");
-
-        //if (enemyes.Length > _maxEnemyCount)
-        //{
-        //    foreach (var enemy in enemyes)
-        //    {
-        //        Debug.Log("must be delete");
-        //        Destroy(enemy);
-        //    }
-        //}
     }
 }
