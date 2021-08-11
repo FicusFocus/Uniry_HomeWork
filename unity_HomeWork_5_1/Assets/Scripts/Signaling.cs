@@ -10,9 +10,8 @@ public class Signaling : MonoBehaviour
     private AudioSource _audio;
     private IEnumerator _reduseVolume;
     private IEnumerator _addVolume;
-    private bool _alreadyPlay = false;
     private float _maxVolume = 1f;
-    private float _minVolume = 0.01f;
+    private float _minVolume = 0.1f;
 
     private void Start()
     {
@@ -34,7 +33,7 @@ public class Signaling : MonoBehaviour
         {
             _audio.volume -= _forceOfSoundChange * Time.deltaTime;
 
-            if (_audio.volume == 0)
+            if (_audio.volume < _minVolume)
                 _audio.Pause();
 
             yield return null;
@@ -43,25 +42,19 @@ public class Signaling : MonoBehaviour
 
     public void Playing()
     {
-        if (!_alreadyPlay)
+        if (_reduseVolume != null)
         {
             _audio.Play();
-            _alreadyPlay = true;
-
-            if (_reduseVolume != null)
-            {
-                StopCoroutine(_reduseVolume);
-                _reduseVolume = null;
-            }
-
-            _addVolume = AddVolume();
-            StartCoroutine(_addVolume);
+            StopCoroutine(_reduseVolume);
+            _reduseVolume = null;
         }
+
+        _addVolume = AddVolume();
+        StartCoroutine(_addVolume);
     }
 
     public void StopPlaying()
     {
-        _alreadyPlay = false;
 
         if (_addVolume != null)
         {

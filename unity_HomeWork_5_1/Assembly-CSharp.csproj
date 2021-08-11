@@ -63,8 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AnimationSetter.cs" />
     <Compile Include="Assets\Scripts\DoorOpener.cs" />
-    <Compile Include="Assets\Scripts\MoveController.cs" />
+    <Compile Include="Assets\Scripts\KeyBordInput.cs" />
+    <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\Signaling.cs" />
     <Compile Include="Assets\Scripts\Thief.cs" />
     <Reference Include="Unity.Timeline.Editor">

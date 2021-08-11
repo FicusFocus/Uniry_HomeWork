@@ -37,14 +37,14 @@ public class MoveExempl : MonoBehaviour
     void Update()
     {
         targetVelocity = new Vector2(Input.GetAxis("Horizontal"), 0);
-
+        
         if (Input.GetKey(KeyCode.Space) && grounded)
-            Velocity.y = 5;   //Если нажат пробел и персонаж приземлен то ускорение вверх = 5
+            Velocity.y = 5;  
     }
 
     void FixedUpdate()
     {
-        Velocity += GravityModifier * Physics2D.gravity * Time.deltaTime;
+        //Velocity += GravityModifier * Physics2D.gravity * Time.deltaTime;
         Velocity.x = targetVelocity.x;
 
         grounded = false;
