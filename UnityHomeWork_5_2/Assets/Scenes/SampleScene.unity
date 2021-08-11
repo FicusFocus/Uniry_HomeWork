@@ -319,18 +319,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9931316485f9bd3468556d59ec2b91fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnPoints:
-  - {fileID: 1124938290}
-  - {fileID: 1212307914}
-  - {fileID: 1419812360}
-  - {fileID: 1633509324}
-  - {fileID: 199330038}
-  - {fileID: 1136469550}
-  - {fileID: 1513994062}
-  - {fileID: 345010972}
-  - {fileID: 862150367}
-  - {fileID: 999333734}
-  _EnemyTemplate: {fileID: -3122854470787898103, guid: 9182ee09eec42214080067175ddb9da6,
+  _spawn: {fileID: 1944871117}
+  _template: {fileID: -3122854470787898103, guid: 9182ee09eec42214080067175ddb9da6,
     type: 3}
   _waitingTime: 2
   _maxEnemyCount: 3
