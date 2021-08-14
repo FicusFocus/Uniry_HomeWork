@@ -11,7 +11,7 @@ public class EnemyCreator : MonoBehaviour
 
     private Transform[] _spawnPoints;
     private List<Enemy> _enemyes = new List<Enemy>();
-    private float _nextWaitingTime;
+    private float _lastSpawnTime;
 
     private void Start()
     {
@@ -24,12 +24,11 @@ public class EnemyCreator : MonoBehaviour
     private void Update()
     {
         int randomSpawnPositionNumber = Random.Range(0, _spawnPoints.Length);
-        if (Time.time > _nextWaitingTime)
+        if (Time.time > _lastSpawnTime + _waitingTime)
         {
-            _nextWaitingTime += _waitingTime;
-
             var newEnemy = Instantiate(_template, _spawnPoints[randomSpawnPositionNumber].position, Quaternion.identity);
             _enemyes.Add(newEnemy);
+            _lastSpawnTime = Time.time;
         }        
 
         if (_enemyes.Count > _maxEnemyCount)
