@@ -11,7 +11,7 @@ public class Movement : MonoBehaviour
     public void Move(float direction)
     {
         Vector2 currentPosition = transform.position;
-        var newPosition = new Vector2(direction, currentPosition.y);
+        var newPosition = new Vector2(direction , currentPosition.y);
 
         if (newPosition.x < currentPosition.x)
             transform.localEulerAngles = _lookLeft;

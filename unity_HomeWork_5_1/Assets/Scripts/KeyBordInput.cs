@@ -14,12 +14,11 @@ public class KeyBordInput : MonoBehaviour
             _movement.Move(transform.position.x - _minStepDistanse);
             _animationSetter.SetRunAnimation(true);
         }
-        if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D))
         {
             _movement.Move(transform.position.x + _minStepDistanse);
             _animationSetter.SetRunAnimation(true);
-        }
-
+        }else
         _animationSetter.SetRunAnimation(false);
     }
 }

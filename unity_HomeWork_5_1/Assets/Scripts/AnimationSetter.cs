@@ -9,6 +9,6 @@ public class AnimationSetter : MonoBehaviour
         if (isMove)
             _animator.SetTrigger("Run");
         else
-            _animator.ResetTrigger("Run");
+            _animator.SetTrigger("Idle");
     }
 }

@@ -22,7 +22,7 @@ public class Signaling : MonoBehaviour
     {
         while (_audio.volume < _maxVolume)
         {
-            _audio.volume += _forceOfSoundChange * Time.deltaTime;
+            _audio.volume = Mathf.MoveTowards(_audio.volume, _maxVolume, _forceOfSoundChange * Time.deltaTime);
             yield return null;
         }
     }
@@ -31,7 +31,7 @@ public class Signaling : MonoBehaviour
     {
         while (_audio.volume > _minVolume)
         {
-            _audio.volume -= _forceOfSoundChange * Time.deltaTime;
+            _audio.volume = Mathf.MoveTowards(_audio.volume, _maxVolume, -_forceOfSoundChange * Time.deltaTime);
 
             if (_audio.volume < _minVolume)
                 _audio.Pause();
