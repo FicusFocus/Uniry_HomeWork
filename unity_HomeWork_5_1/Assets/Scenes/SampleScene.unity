@@ -1245,6 +1245,70 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _movement: {fileID: 2106620177}
   _animationSetter: {fileID: 2106620173}
+  _movedRight:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2106620177}
+        m_MethodName: MoveRight
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _movedLeft:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2106620177}
+        m_MethodName: MoveLeft
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _moved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2106620173}
+        m_MethodName: SetRunAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _stoped:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2106620173}
+        m_MethodName: SetIdleAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &8551610732793173124
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1275,7 +1339,7 @@ PrefabInstance:
     - target: {fileID: 8551610733959419513, guid: e62a9e1e7b997e940b5c264869c47b46,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.5
+      value: 4.72
       objectReference: {fileID: 0}
     - target: {fileID: 8551610733959419513, guid: e62a9e1e7b997e940b5c264869c47b46,
         type: 3}

@@ -4,29 +4,29 @@ using UnityEngine;
 
 public class EnemyCreator : MonoBehaviour
 {
-    [SerializeField] private Transform _spawn;
+    [SerializeField] private Transform _spawnPoints;
     [SerializeField] private Enemy _template;
     [SerializeField] private float _waitingTime;
     [SerializeField] private int _maxEnemyCount;
 
-    private Transform[] _spawnPoints;
+    private Transform[] _points;
     private List<Enemy> _enemyes = new List<Enemy>();
     private float _lastSpawnTime;
 
     private void Start()
     {
-        _spawnPoints = new Transform[_spawn.childCount];
+        _points = new Transform[_spawnPoints.childCount];
 
-        for (int i = 0; i < _spawnPoints.Length; i++)
-            _spawnPoints[i] = _spawn.GetChild(i);
+        for (int i = 0; i < _points.Length; i++)
+            _points[i] = _spawnPoints.GetChild(i);
     }
 
     private void Update()
     {
-        int randomSpawnPositionNumber = Random.Range(0, _spawnPoints.Length);
+        int randomSpawnPositionNumber = Random.Range(0, _points.Length);
         if (Time.time > _lastSpawnTime + _waitingTime)
         {
-            var newEnemy = Instantiate(_template, _spawnPoints[randomSpawnPositionNumber].position, Quaternion.identity);
+            var newEnemy = Instantiate(_template, _points[randomSpawnPositionNumber].position, Quaternion.identity);
             _enemyes.Add(newEnemy);
             _lastSpawnTime = Time.time;
         }        

@@ -1,24 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 public class KeyBordInput : MonoBehaviour
 {
-    [SerializeField]private Movement _movement;
+    [SerializeField] private Movement _movement;
     [SerializeField] private AnimationSetter _animationSetter;
+    [SerializeField] private UnityEvent _movedRight;
+    [SerializeField] private UnityEvent _movedLeft;
+    [SerializeField] private UnityEvent _moved;
+    [SerializeField] private UnityEvent _stoped;
 
-    private float _minStepDistanse = 0.01f;
 
-    void Update()
+    private void Update()
     {
         if (Input.GetKey(KeyCode.A))
         {
-            _movement.Move(transform.position.x - _minStepDistanse);
-            _animationSetter.SetRunAnimation(true);
+            _moved?.Invoke();
+            _movedRight?.Invoke();
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            _movement.Move(transform.position.x + _minStepDistanse);
-            _animationSetter.SetRunAnimation(true);
-        }else
-        _animationSetter.SetRunAnimation(false);
+            _moved?.Invoke();
+            _movedLeft?.Invoke();
+        }
+        else
+        {
+            _stoped?.Invoke();
+        }
     }
 }

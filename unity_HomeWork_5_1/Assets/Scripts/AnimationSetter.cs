@@ -3,12 +3,14 @@
 public class AnimationSetter : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
-    
-    public void SetRunAnimation(bool isMove)
+
+    public void SetRunAnimation()
     {
-        if (isMove)
-            _animator.SetTrigger("Run");
-        else
-            _animator.SetTrigger("Idle");
+        _animator.SetTrigger("Run");
+    }
+
+    public void SetIdleAnimation()
+    {
+        _animator.SetTrigger("Idle");
     }
 }

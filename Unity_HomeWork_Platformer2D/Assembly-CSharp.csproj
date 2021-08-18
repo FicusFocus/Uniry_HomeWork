@@ -63,8 +63,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\MoveController.cs" />
     <Compile Include="Assets\Scripts\MoveExempl.cs" />
+    <Compile Include="Assets\Scripts\Movement.cs" />
     <None Include="Assets\BayatGames\Free Platform Game Assets\Readme.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/unity/Projects/Uniry_HomeWork/Unity_HomeWork_Platformer2D/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
