@@ -11,6 +11,7 @@ public class Signaling : MonoBehaviour
     private bool _isVolumeChange;
     private float _maxVolume = 1f;
     private float _minVolume = 0.01f;
+    private float _currentVolume;
     private AudioSource _audio;
 
     private void Start()
@@ -18,7 +19,7 @@ public class Signaling : MonoBehaviour
         _audio = GetComponent<AudioSource>();
     }
 
-    private IEnumerator VolumePowerSetter(float forceOfSoundChange)
+    private IEnumerator SetVolumePower(float forceOfSoundChange)
     {
         while (_isVolumeChange)
         {
@@ -27,7 +28,7 @@ public class Signaling : MonoBehaviour
             if (_audio.volume < _minVolume)
                 _audio.Pause();
 
-            if (_audio.volume == _maxVolume || _audio.volume == _minVolume)
+            if (_audio.volume == _maxVolume || _audio.volume < _minVolume)
                 _isVolumeChange = false;
 
             yield return null;
@@ -44,18 +45,18 @@ public class Signaling : MonoBehaviour
         }
     }
 
-    public void Playing()
+    public void TurnOnSignaling()
     {
         _audio.Play();
         StopVolumeSetter();
-        _volumePowerSetter = VolumePowerSetter(_forceOfSoundChange);
+        _volumePowerSetter = SetVolumePower(_forceOfSoundChange);
         StartCoroutine(_volumePowerSetter);
     }
 
-    public void StopPlaying()
+    public void TurnOffSignaling()
     {
         StopVolumeSetter();
-        _volumePowerSetter = VolumePowerSetter(-_forceOfSoundChange);
+        _volumePowerSetter = SetVolumePower(-_forceOfSoundChange);
         StartCoroutine(_volumePowerSetter);
     }
 }

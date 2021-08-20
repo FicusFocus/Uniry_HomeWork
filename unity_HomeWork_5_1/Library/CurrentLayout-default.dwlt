@@ -526,18 +526,18 @@ MonoBehaviour:
     m_ExpandedIDs: ffffffff00000000382d0000b42d0000cc2d00006c2e0000ba2e0000c82e0000002f0000342f0000403000005c300000b83000000231000030310000c2320000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: KeyBordInput
-      m_OriginalName: KeyBordInput
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 10476
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
