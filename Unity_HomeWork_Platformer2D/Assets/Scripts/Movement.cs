@@ -2,74 +2,50 @@
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float _speed;
+    [SerializeField] private Rigidbody2D _rigidbody;
+    [SerializeField] private float _jumpforce;
+    [SerializeField] private float _distanceToGround;
+    [SerializeField] private ContactFilter2D _groundLayer;
 
-    private RaycastHit2D[] _hitResultsMove = new RaycastHit2D[1];
-    private RaycastHit2D[] _hitResultsJump = new RaycastHit2D[1];
-    private Vector2 _normal;
-    private bool _grounded;
-    private Vector2 _velocity;
+    private RaycastHit2D[] _hitCount = new RaycastHit2D[3];
+    private float _horizontalMove;
+    private bool _grounted;
 
-    void Update()
+    //public void MoveLeft()
+    //{
+    //    Move();
+    //}
+
+    //public void MoveRight()
+    //{
+    //    Move();
+    //}
+
+    private void Update()
     {
-        var horizontal = new Vector2(Input.GetAxis("Horizontal"), 0); //Ввод с клавы в отдельный класс
-        Move(horizontal);
+        _horizontalMove = Input.GetAxis("Horizontal") * _speed;
+
+        if (Input.GetKeyDown(KeyCode.Space) && _grounted)
+            _rigidbody.AddForce(transform.up * _jumpforce, ForceMode2D.Impulse);
+    }
+
+    private void FixedUpdate()
+    {
+        Vector2 targetVelocity = new Vector2(_horizontalMove, _rigidbody.velocity.y);
+        _rigidbody.velocity = targetVelocity;
 
         FindGround();
-
-        if (Input.GetKeyDown(KeyCode.Space) && _grounded)
-        {
-            _velocity.y = 1;
-            Jump();
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        _normal = collision.contacts[0].normal;
-    }
-
-    private Vector2 Project(Vector2 direction)
-    {
-        return direction - Vector2.Dot(direction, _normal) * _normal;
-    }
-
-    private void Move(Vector2 direction)
-    {
-        var collisionCount = _rigidbody.Cast(direction, _hitResultsMove, 0.1f);
-
-        if (collisionCount == 0)
-        {
-            _rigidbody.MovePosition(_rigidbody.position + direction.normalized * (_speed * Time.deltaTime));
-        }
-        else
-        {
-            for (int i = 0; i < collisionCount; i++)
-            {
-                _normal = _hitResultsMove[i].normal;
-                Vector2 directionAlongSurfase = Project(direction.normalized);
-                transform.position = Vector2.MoveTowards(transform.position, directionAlongSurfase, _speed * Time.deltaTime);
-            }
-        }
     }
 
     private void FindGround()
     {
-        var lookDown = new Vector2(0, -0.01f);
-        var collisionCount = _rigidbody.Cast(lookDown, _hitResultsJump, 0.01f);
+        var loocDown = new Vector2(_rigidbody.position.x, _rigidbody.position.y - _distanceToGround);
+        var collisionCoun = _rigidbody.Cast(loocDown, _groundLayer, _hitCount, _distanceToGround);
 
-        if (collisionCount > 0)
-            _grounded = true;
+        if (collisionCoun > 0)
+            _grounted = true;
         else
-        {
-            _grounded = false;
-            transform.position = Vector2.MoveTowards(transform.position, lookDown, 0.01f);
-        }
-    }
-
-    private void Jump()
-    {
-        transform.position = _velocity;
+            _grounted = false;
     }
 }
