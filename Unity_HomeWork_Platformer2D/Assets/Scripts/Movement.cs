@@ -3,49 +3,41 @@
 public class Movement : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private float _jumpforce;
-    [SerializeField] private float _distanceToGround;
+    [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private ContactFilter2D _groundLayer;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
 
-    private RaycastHit2D[] _hitCount = new RaycastHit2D[3];
     private float _horizontalMove;
     private bool _grounted;
 
-    //public void MoveLeft()
-    //{
-    //    Move();
-    //}
 
-    //public void MoveRight()
-    //{
-    //    Move();
-    //}
-
-    private void Update()
+    public void Move(float direction)
     {
-        _horizontalMove = Input.GetAxis("Horizontal") * _speed;
+        if (direction > 0)
+            _spriteRenderer.flipX = false;
+        else
+            _spriteRenderer.flipX = true;
 
-        if (Input.GetKeyDown(KeyCode.Space) && _grounted)
+        _horizontalMove = direction * _speed;
+
+        Vector2 targetVelocity = new Vector2(_horizontalMove, _rigidbody.velocity.y);
+        _rigidbody.velocity = targetVelocity;
+    }
+
+    public void MakeJump(bool isJump)
+    {
+        if (isJump && _grounted)
             _rigidbody.AddForce(transform.up * _jumpforce, ForceMode2D.Impulse);
     }
 
-    private void FixedUpdate()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        Vector2 targetVelocity = new Vector2(_horizontalMove, _rigidbody.velocity.y);
-        _rigidbody.velocity = targetVelocity;
-
-        FindGround();
+        _grounted = true;
     }
 
-    private void FindGround()
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        var loocDown = new Vector2(_rigidbody.position.x, _rigidbody.position.y - _distanceToGround);
-        var collisionCoun = _rigidbody.Cast(loocDown, _groundLayer, _hitCount, _distanceToGround);
-
-        if (collisionCoun > 0)
-            _grounted = true;
-        else
-            _grounted = false;
+        _grounted = false;
     }
 }
