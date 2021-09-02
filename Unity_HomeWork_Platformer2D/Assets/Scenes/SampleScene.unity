@@ -457,11 +457,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35787e7cf6312fb4f80c92a9e5be65f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moved:
+  _jumped:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 281856086}
-        m_MethodName: Move
+        m_MethodName: MakeJump
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -471,38 +471,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 281856095}
-        m_MethodName: SetRunAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: MoveEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  _jumped:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 281856095}
-        m_MethodName: SetJumpAnimation
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
     m_TypeName: JumpEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  _stoped:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!4 &281856092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1246583609473777558, guid: 0b633e7e045c5fc488856b18bbb4f72c,
@@ -5267,6 +5236,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1246583609473777559, guid: 0b633e7e045c5fc488856b18bbb4f72c,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246583609473777559, guid: 0b633e7e045c5fc488856b18bbb4f72c,
+        type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1246583609473777559, guid: 0b633e7e045c5fc488856b18bbb4f72c,
+        type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1246583609473777558, guid: 0b633e7e045c5fc488856b18bbb4f72c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5331,21 +5315,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246583609473777559, guid: 0b633e7e045c5fc488856b18bbb4f72c,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246583609473777559, guid: 0b633e7e045c5fc488856b18bbb4f72c,
-        type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1246583609473777559, guid: 0b633e7e045c5fc488856b18bbb4f72c,
-        type: 3}
-      propertyPath: m_FlipY
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b633e7e045c5fc488856b18bbb4f72c, type: 3}

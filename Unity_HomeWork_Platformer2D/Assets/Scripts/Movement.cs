@@ -10,7 +10,16 @@ public class Movement : MonoBehaviour
 
     private float _horizontalMove;
     private bool _grounted;
+    private KeyBoardInput _input = new KeyBoardInput();
 
+    private void Start()
+    {
+        _input.OnMoved += Move;
+    }
+    private void OnDisable()
+    {
+        _input.OnMoved -= Move;
+    }
 
     public void Move(float direction)
     {

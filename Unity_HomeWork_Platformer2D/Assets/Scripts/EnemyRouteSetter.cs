@@ -11,7 +11,7 @@ public class EnemyRouteSetter : MonoBehaviour
     private Transform[] _points;
     private int _currentPoint = 0;
 
-    void Start()
+    private void Start()
     {
         _points = new Transform[_path.childCount];
 
@@ -19,7 +19,7 @@ public class EnemyRouteSetter : MonoBehaviour
             _points[i] = _path.GetChild(i);
     }
 
-    void Update()
+    private void Update()
     {
         _target = _points[_currentPoint]; 
 
