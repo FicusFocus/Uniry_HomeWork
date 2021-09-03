@@ -10,8 +10,7 @@ public class KeyBoardInput : MonoBehaviour
     private string _horizontal = "Horizontal";
     private float _horizontalMove;
 
-    public delegate void MoveStep(float direction);
-    public event MoveStep OnMoved;
+    public event UnityAction<float> OnMoved;
 
     private void Update()
     {

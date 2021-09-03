@@ -12,10 +12,12 @@ public class Movement : MonoBehaviour
     private bool _grounted;
     private KeyBoardInput _input = new KeyBoardInput();
 
-    private void Start()
+    private void OnEnable()
     {
         _input.OnMoved += Move;
+
     }
+
     private void OnDisable()
     {
         _input.OnMoved -= Move;
