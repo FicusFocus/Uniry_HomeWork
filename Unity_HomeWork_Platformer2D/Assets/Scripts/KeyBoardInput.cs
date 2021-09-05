@@ -23,9 +23,8 @@ public class KeyBoardInput : MonoBehaviour
 
         if (_horizontalMove != 0)
         {
-            Debug.Log(_horizontalMove);
             //_moved?.Invoke(_horizontalMove);
-            OnMoved(_horizontalMove);
+            OnMoved?.Invoke(_horizontalMove);
         }
     }
 }

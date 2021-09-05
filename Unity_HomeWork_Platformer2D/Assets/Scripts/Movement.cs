@@ -15,7 +15,6 @@ public class Movement : MonoBehaviour
     private void OnEnable()
     {
         _input.OnMoved += Move;
-
     }
 
     private void OnDisable()
