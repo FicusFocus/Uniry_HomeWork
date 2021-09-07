@@ -7,19 +7,21 @@ public class Movement : MonoBehaviour
     [SerializeField] private Rigidbody2D _rigidbody;
     [SerializeField] private ContactFilter2D _groundLayer;
     [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private KeyBoardInput _input;
 
     private float _horizontalMove;
     private bool _grounted;
-    private KeyBoardInput _input = new KeyBoardInput();
 
     private void OnEnable()
     {
+        _input.OnJumped += MakeJump;
         _input.OnMoved += Move;
     }
 
     private void OnDisable()
     {
-        _input.OnMoved -= Move;
+        _input.OnJumped -= MakeJump;
+        _input.OnMoved += Move;
     }
 
     public void Move(float direction)

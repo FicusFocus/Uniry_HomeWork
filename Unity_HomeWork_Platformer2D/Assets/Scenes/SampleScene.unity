@@ -396,6 +396,7 @@ MonoBehaviour:
     minNormalAngle: 0
     maxNormalAngle: 0
   _spriteRenderer: {fileID: 281856090}
+  _input: {fileID: 281856091}
 --- !u!50 &281856087
 Rigidbody2D:
   serializedVersion: 4
@@ -471,7 +472,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_TypeName: JumpEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  _moved:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 281856095}
+        m_MethodName: SetRunAnimation
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!4 &281856092 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1246583609473777558, guid: 0b633e7e045c5fc488856b18bbb4f72c,

@@ -1,35 +1,37 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 
 public class KeyBoardInput : MonoBehaviour
 {
-    //[SerializeField] private MoveEvent _moved;
-    [SerializeField] private JumpEvent _jumped;
+    [SerializeField] private UnityEvent _jumped;
+    [SerializeField] private UnityEvent _moved;
 
     private string _horizontal = "Horizontal";
     private float _horizontalMove;
-
+    
     public event UnityAction<float> OnMoved;
+    public event UnityAction<bool> OnJumped;
 
     private void Update()
     {
         _horizontalMove = Input.GetAxis(_horizontal);
 
         if (Input.GetKeyDown(KeyCode.Space))
-            _jumped?.Invoke(true);
+        {
+            _jumped?.Invoke();
+            OnJumped?.Invoke(true);
+        }
         else
-            _jumped?.Invoke(false);
+        {
+            _jumped?.Invoke();
+            OnJumped?.Invoke(false);
+        }
 
         if (_horizontalMove != 0)
         {
-            //_moved?.Invoke(_horizontalMove);
+            _moved?.Invoke();
             OnMoved?.Invoke(_horizontalMove);
         }
     }
 }
-
-[System.Serializable] public class MoveEvent : UnityEvent<float> { }
-
-[System.Serializable] public class JumpEvent : UnityEvent<bool> { }
 
