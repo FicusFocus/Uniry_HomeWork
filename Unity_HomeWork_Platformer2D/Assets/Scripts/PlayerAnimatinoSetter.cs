@@ -17,7 +17,7 @@ public class PlayerAnimatinoSetter : MonoBehaviour
         
     }
 
-    public void SetRunAnimation(float speed)
+    private void SetRunAnimation(float speed)
     {
         if (speed != 0)
             _animator.SetTrigger(_run);

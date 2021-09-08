@@ -24,7 +24,7 @@ public class Movement : MonoBehaviour
         _input.Moved += Move;
     }
 
-    public void Move(float direction)
+    private void Move(float direction)
     {
         if (direction > 0)
             _spriteRenderer.flipX = false;
@@ -37,7 +37,7 @@ public class Movement : MonoBehaviour
         _rigidbody.velocity = targetVelocity;
     }
 
-    public void MakeJump(bool isJump)
+    private void MakeJump(bool isJump)
     {
         if (isJump && _grounted)
             _rigidbody.AddForce(transform.up * _jumpforce, ForceMode2D.Impulse);
