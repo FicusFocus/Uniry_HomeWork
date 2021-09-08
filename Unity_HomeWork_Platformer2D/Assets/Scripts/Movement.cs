@@ -14,14 +14,14 @@ public class Movement : MonoBehaviour
 
     private void OnEnable()
     {
-        _input.OnJumped += MakeJump;
-        _input.OnMoved += Move;
+        _input.Jumped += MakeJump;
+        _input.Moved += Move;
     }
 
     private void OnDisable()
     {
-        _input.OnJumped -= MakeJump;
-        _input.OnMoved += Move;
+        _input.Jumped -= MakeJump;
+        _input.Moved += Move;
     }
 
     public void Move(float direction)

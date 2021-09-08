@@ -3,35 +3,23 @@ using UnityEngine.Events;
 
 public class KeyBoardInput : MonoBehaviour
 {
-    [SerializeField] private UnityEvent _jumped;
-    [SerializeField] private UnityEvent _moved;
-
     private string _horizontal = "Horizontal";
     private float _horizontalMove;
     
-    public event UnityAction<float> OnMoved;
-    public event UnityAction<bool> OnJumped;
+    public event UnityAction<float> Moved;
+    public event UnityAction<bool> Jumped;
 
     private void Update()
     {
         _horizontalMove = Input.GetAxis(_horizontal);
 
         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            _jumped?.Invoke();
-            OnJumped?.Invoke(true);
-        }
+            Jumped?.Invoke(true);
         else
-        {
-            _jumped?.Invoke();
-            OnJumped?.Invoke(false);
-        }
+            Jumped?.Invoke(false);
 
         if (_horizontalMove != 0)
-        {
-            _moved?.Invoke();
-            OnMoved?.Invoke(_horizontalMove);
-        }
+            Moved?.Invoke(_horizontalMove);
     }
 }
 
