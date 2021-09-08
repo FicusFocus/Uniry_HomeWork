@@ -12,11 +12,7 @@ public class KeyBoardInput : MonoBehaviour
     private void Update()
     {
         _horizontalMove = Input.GetAxis(_horizontal);
-
-        if (Input.GetKeyDown(KeyCode.Space))
-            Jumped?.Invoke(true);
-        else
-            Jumped?.Invoke(false);
+        Jumped?.Invoke(Input.GetKeyDown(KeyCode.Space));
 
         if (_horizontalMove != 0)
             Moved?.Invoke(_horizontalMove);

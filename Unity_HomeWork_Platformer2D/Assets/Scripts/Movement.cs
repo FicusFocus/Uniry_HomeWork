@@ -26,10 +26,7 @@ public class Movement : MonoBehaviour
 
     private void Move(float direction)
     {
-        if (direction > 0)
-            _spriteRenderer.flipX = false;
-        else
-            _spriteRenderer.flipX = true;
+        _spriteRenderer.flipX = direction < 0;
 
         _horizontalMove = direction * _speed;
 

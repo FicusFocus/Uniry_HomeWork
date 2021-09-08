@@ -14,7 +14,7 @@ public class PlayerAnimatinoSetter : MonoBehaviour
 
     private void OnDisable()
     {
-        
+        _input.Moved -= SetRunAnimation;
     }
 
     private void SetRunAnimation(float speed)
