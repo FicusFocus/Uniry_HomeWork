@@ -4,25 +4,17 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private Slider _helthBar;
     [SerializeField] private int _helth;
-    [SerializeField] private float _duration;
 
-    private float _currentHelth;
-    private float _targetHalth;
+    private int _currentHelth;
 
     public event UnityAction Hited;
     public event UnityAction Died;
+    public event UnityAction<int> CurrentHelthChanged;
 
     private void Start()
     {
         _currentHelth = _helth;
-        _targetHalth = _helth;
-    }
-
-    private void Update()
-    {
-        _helthBar.value = Mathf.MoveTowards(_helthBar.value, _targetHalth, _duration * Time.deltaTime);
     }
 
     public void TakeDamage(int damage)
@@ -30,16 +22,11 @@ public class Player : MonoBehaviour
         if (_currentHelth > 0 && damage > 0)
         {
             if (_currentHelth - damage < 0)
-            {
-                _targetHalth = 0;
                 _currentHelth = 0;
-            }
             else
-            {
                 _currentHelth -= damage;
-                _targetHalth -= damage;
-            }
-            
+
+            CurrentHelthChanged?.Invoke(_currentHelth);
             Hited?.Invoke();
         }
         else if (_currentHelth <= 0)
@@ -53,7 +40,7 @@ public class Player : MonoBehaviour
         if (_currentHelth + heal <= _helth && heal > 0)
         {
             _currentHelth += heal;
-            _targetHalth += heal;
+            CurrentHelthChanged?.Invoke(_currentHelth);
         }
     }
 }

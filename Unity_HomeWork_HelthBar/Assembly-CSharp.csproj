@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Skripts\Player.cs" />
     <Compile Include="Assets\Skripts\playerAnimationSetter.cs" />
+    <Compile Include="Assets\Skripts\HelthBarCanger.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
