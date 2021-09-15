@@ -604,6 +604,7 @@ GameObject:
   - component: {fileID: 755090841}
   - component: {fileID: 755090842}
   - component: {fileID: 755090843}
+  - component: {fileID: 755090844}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -756,7 +757,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _helthBar: {fileID: 1302299363}
-  _helth: 1000
+  _helth: 100
+  _duration: 8
 --- !u!114 &755090843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -769,11 +771,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79aa8e6829ed10c4fb9c137e58cc43bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &755090844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755090836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30e4254fa9ffebb44aa74cd235798435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   _animator: {fileID: 755090841}
-  _player: {fileID: 0}
-  _hit: Hit
-  _heal: Heal
-  _die: Die
+  _player: {fileID: 755090842}
 --- !u!1 &864153754
 GameObject:
   m_ObjectHideFlags: 0
@@ -1426,9 +1437,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 890763603}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1000
+  m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 1000
+  m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1876,12 +1887,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 0.5
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96

@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Skripts\Player.cs" />
+    <Compile Include="Assets\Skripts\playerAnimationSetter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
