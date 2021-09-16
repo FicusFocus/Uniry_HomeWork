@@ -8,13 +8,13 @@ public class HealthBarCanger : MonoBehaviour
     [SerializeField] private Slider _helthBar;
     [SerializeField] private float _duration;
 
+    private IEnumerator _setHealth;
     private int _targetValue;
 
     private void OnEnable()
     {
         _player.CurrentHelthChanged += SetTargetValue;
     }
-
 
     private void OnDisable()
     {
@@ -29,7 +29,18 @@ public class HealthBarCanger : MonoBehaviour
     private void SetTargetValue(int targetValue)
     {
         _targetValue = targetValue;
-        StartCoroutine(SetHealth());
+
+        if (_setHealth == null)
+        {
+            _setHealth = SetHealth();
+            StartCoroutine(_setHealth);
+        }
+        else
+        {
+            StopCoroutine(_setHealth);
+            _setHealth = SetHealth();
+            StartCoroutine(_setHealth);
+        }
     }
 
     private IEnumerator SetHealth()
