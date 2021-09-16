@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class playerAnimationSetter : MonoBehaviour
+public class PlayerAnimationSetter : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
     [SerializeField] private Player _player;

@@ -1,10 +1,9 @@
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private int _helth;
+    [SerializeField] private int _health;
 
     private int _currentHelth;
 
@@ -14,7 +13,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        _currentHelth = _helth;
+        _currentHelth = _health;
     }
 
     public void TakeDamage(int damage)
@@ -37,7 +36,7 @@ public class Player : MonoBehaviour
 
     public void HealPlayer(int heal)
     {
-        if (_currentHelth + heal <= _helth && heal > 0)
+        if (_currentHelth + heal <= _health && heal > 0)
         {
             _currentHelth += heal;
             CurrentHelthChanged?.Invoke(_currentHelth);
