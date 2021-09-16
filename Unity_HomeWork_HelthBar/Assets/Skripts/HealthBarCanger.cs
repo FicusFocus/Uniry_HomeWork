@@ -45,11 +45,10 @@ public class HealthBarCanger : MonoBehaviour
 
     private IEnumerator SetHealth()
     {
-        var timer = Time.deltaTime;
         while (_helthBar.value != _targetValue)
         {
             _helthBar.value = Mathf.MoveTowards(_helthBar.value, _targetValue, _duration * Time.deltaTime);
-            yield return timer;
+            yield return null;
         }
 
     }
