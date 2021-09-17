@@ -8,7 +8,7 @@ public class HealthBarCanger : MonoBehaviour
     [SerializeField] private Slider _helthBar;
     [SerializeField] private float _duration;
 
-    private IEnumerator _setHealth;
+    private Coroutine _setHealth;
     private int _targetValue;
 
     private void OnEnable()
@@ -32,14 +32,12 @@ public class HealthBarCanger : MonoBehaviour
 
         if (_setHealth == null)
         {
-            _setHealth = SetHealth();
-            StartCoroutine(_setHealth);
+            _setHealth = StartCoroutine(SetHealth());
         }
         else
         {
             StopCoroutine(_setHealth);
-            _setHealth = SetHealth();
-            StartCoroutine(_setHealth);
+            _setHealth = StartCoroutine(SetHealth());
         }
     }
 
