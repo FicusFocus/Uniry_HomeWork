@@ -19,7 +19,5 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
             transform.Translate(_speed * Time.deltaTime * -1, 0, 0);
-
-        Mathf.M
     }
 }
