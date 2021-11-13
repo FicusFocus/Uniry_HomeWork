@@ -30,10 +30,10 @@ public class Spawner : MonoBehaviour
 
         if (_timeAfterLastSpawned >= _currentWave.Delay)
         {
-            InstantiateEnemy();
-            _spawned++;
             EnemyCountChanged?.Invoke(_spawned, _currentWave.Count);
             _timeAfterLastSpawned = 0;
+            InstantiateEnemy();
+            _spawned++;
         }
 
         if (_currentWave.Count == _spawned)

@@ -43,10 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7b3864b07eed924287f317b5344a813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _price: 20
+  _price: 1
   _label: "\u0420\u0443\u0436\u044C\u0435"
   _icon: {fileID: 21300000, guid: a7339ccbe8456a64db325487b6174ad2, type: 3}
-  _isBuyed: 0
+  _isBuyed: 1
   Ammo: {fileID: 7561230615129862449, guid: 5623a9e1aa8045049b6376ad44a837d2, type: 3}
   _fractionsAmountInShot: 3
   _scatter: 0.2

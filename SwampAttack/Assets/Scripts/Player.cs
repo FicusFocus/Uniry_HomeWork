@@ -13,7 +13,6 @@ public class Player : MonoBehaviour
     private int _currentWeaponNumber = 0;
     private Animator _animator;
     private string _shootAnimation = "Shoot";
-    private string _dieAnimation = "Die";
     private int _currentHealth;
     public int Money { get; private set; }
 
@@ -24,7 +23,7 @@ public class Player : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _currentHealth = _health;
-        _currentWeapon = _weapons[0];
+        _currentWeapon = _weapons[_currentWeaponNumber];
     }
 
     private void Update()
@@ -36,6 +35,16 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    private void ChangeWeapon(Weapon weapon)
+    {
+        _currentWeapon = weapon;
+    }
+    
     public void TakeDamage(int damage)
     {
         _currentHealth -= damage;
@@ -45,27 +54,17 @@ public class Player : MonoBehaviour
             Die();
     }
 
-    private void Die()
-    {
-        _animator.Play(_dieAnimation);
-        Destroy(gameObject);
-    }
-
     public void AddMoney(int money)
     {
         Money += money;
+        MoneyChanged?.Invoke(Money);
     }
 
     public void BuyWeapon(Weapon weapon)
     {
         Money -= weapon.Price;
-        MoneyChanged?.Invoke(Money);
         _weapons.Add(weapon);
-    }
-
-    private void ChangeWeapon(Weapon weapon)
-    {
-        _currentWeapon = weapon;
+        MoneyChanged?.Invoke(Money);
     }
 
     public void NextWeapon()
@@ -87,5 +86,4 @@ public class Player : MonoBehaviour
 
         ChangeWeapon(_weapons[_currentWeaponNumber]);
     }
-
 }

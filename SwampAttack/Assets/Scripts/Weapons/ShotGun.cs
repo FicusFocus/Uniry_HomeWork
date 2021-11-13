@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShotGun : Weapon
 {
     [SerializeField] private int _fractionsAmountInShot;
-    [SerializeField]private float _scatter;
+    [SerializeField] private float _scatter;
 
     public override void Shoot(Transform ShootPoint)
     {
