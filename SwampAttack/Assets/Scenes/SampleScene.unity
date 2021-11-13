@@ -8725,7 +8725,7 @@ MonoBehaviour:
   - Templates:
     - {fileID: 7007854958198963524, guid: 0fa92818984763349b989236fa153705, type: 3}
     Delay: 1
-    Count: 5
+    Count: 1
   - Templates:
     - {fileID: 7007854958198963524, guid: 0fa92818984763349b989236fa153705, type: 3}
     - {fileID: 2453697076355676507, guid: 9cd213012bec079498a1e60c8c688f68, type: 3}
@@ -10245,7 +10245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8398589545189748836, guid: b0bbd15aa0d4b0a40a30d5879ad03ce6, type: 3}
       propertyPath: _weapons.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8398589545189748836, guid: b0bbd15aa0d4b0a40a30d5879ad03ce6, type: 3}
       propertyPath: _weapons.Array.data[0]
@@ -10254,6 +10254,6 @@ PrefabInstance:
     - target: {fileID: 8398589545189748836, guid: b0bbd15aa0d4b0a40a30d5879ad03ce6, type: 3}
       propertyPath: _weapons.Array.data[1]
       value: 
-      objectReference: {fileID: 4839642568986000478, guid: e1e73ca113360e44883a9d28195e3a64, type: 3}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0bbd15aa0d4b0a40a30d5879ad03ce6, type: 3}
