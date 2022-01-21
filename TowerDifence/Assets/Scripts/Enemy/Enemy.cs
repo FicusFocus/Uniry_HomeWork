@@ -64,26 +64,19 @@ public class Enemy : MonoBehaviour
         }
 
         if (_path.Count - 1 <= currentPointIndex)
-        {
             return point;
-        }
         else
         {
-            //var dir = Quaternion.LookRotation(_path[currentPointIndex + 1].position, Vector3.forward);
-            //transform.rotation = dir;
-            //Quaternion newRotation = transform.rotation;
-            //transform.rotation = Quaternion.Euler(0, 0, newRotation.z);
             SetRotationToTarget(_path[currentPointIndex + 1].position);
             return _path[currentPointIndex + 1].position;
         }
     }
 
-    private void SetRotationToTarget(Vector3 targetPoint)
+    private void SetRotationToTarget(Vector2 targetPoint)
     {
-        Vector3 indicatorDirectionAngle = (Vector3.right * targetPoint.x + Vector3.down * targetPoint.y);
-        Quaternion indicatorDirectionQuaternion = Quaternion.LookRotation(Vector3.forward, indicatorDirectionAngle);
-
-        transform.rotation = indicatorDirectionQuaternion;
+        Vector2 lookDiraction = targetPoint - _rigidbody.position;
+        float angle = Mathf.Atan2(lookDiraction.y, lookDiraction.x) * Mathf.Rad2Deg - 90f;
+        _rigidbody.rotation = angle;
     }
 
     public void InitPath(List<Transform> path)
@@ -97,9 +90,8 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 }
+////Vector2 lookDir = mousePos - rb.position;
 
-////////Vector3 indicatorDirectionAngle = (Vector3.right * newPosition.x + Vector3.up * newPosition.y);
+////float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
 
-////////Quaternion indicatorDirectionQuaternion = Quaternion.LookRotation(Vector3.forward, indicatorDirectionAngle);
-
-////////indicatorDirection.transform.rotation = indicatorDirectionQuaternion;
+////rb.rotation = angle;
