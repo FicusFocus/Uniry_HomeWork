@@ -11,6 +11,7 @@ public class TowerPositionSeter : MonoBehaviour
     private void Start()
     {
         _camera = Camera.main;
+        _isMoved = true;
     }
 
     private void Update()
@@ -22,16 +23,16 @@ public class TowerPositionSeter : MonoBehaviour
     private void OnMouseDown()
     {
         _lastPoint = transform.position;
-        _isMoved = true;
-    }
-
-    private void OnMouseUp()
-    {
-        var hitList = Physics2D.OverlapBoxAll(transform.position, transform.lossyScale, 180f);
-
-        if (hitList.Length > 1)
-            transform.position = _lastPoint;
-        
         _isMoved = false;
     }
+
+    //private void OnMouseUp()
+    //{
+    //    var hitList = Physics2D.OverlapBoxAll(transform.position, transform.lossyScale, 180f);
+
+    //    if (hitList.Length > 1)
+    //        transform.position = _lastPoint;
+        
+    //    _isMoved = false;
+    //}
 }

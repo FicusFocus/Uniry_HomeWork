@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public abstract class Tower : MonoBehaviour
+public abstract class Tower : MonoBehaviour //SkiptableObject
 {
+    [SerializeField] private GameObject _attackRadius;
     [SerializeField] private Sprite _icon;
     [SerializeField] private string _name;
     [SerializeField] private float _searchArea;
@@ -19,6 +20,12 @@ public abstract class Tower : MonoBehaviour
     public int Damage => _damage;
     public int Price => _price;
     public float SerchArea => _searchArea;
+
+    private void Start()
+    {
+        _attackRadius.transform.localScale = new Vector3(_searchArea, _searchArea, _searchArea);
+
+    }
 
     private void Update()
     {
@@ -39,7 +46,6 @@ public abstract class Tower : MonoBehaviour
             _timeAfterLastAtteck = 0;
             Attack(_target);
         }
-
 
         _timeAfterLastAtteck += Time.deltaTime;               
     }

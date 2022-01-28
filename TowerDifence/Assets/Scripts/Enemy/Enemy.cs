@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         if (_currentHealthPoint <= 0)
         {
             Died?.Invoke(_revard);
-            Die();  
+            Die();
         }
     }
 
@@ -90,8 +90,3 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
     }
 }
-////Vector2 lookDir = mousePos - rb.position;
-
-////float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
-
-////rb.rotation = angle;
