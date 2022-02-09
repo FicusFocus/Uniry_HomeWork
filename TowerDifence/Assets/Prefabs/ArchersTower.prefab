@@ -43,7 +43,6 @@ GameObject:
   - component: {fileID: 6999719709452145589}
   - component: {fileID: 3210788283176844420}
   - component: {fileID: 6976365692277186891}
-  - component: {fileID: 217357324464076926}
   m_Layer: 0
   m_Name: ArchersTower
   m_TagString: Untagged
@@ -180,24 +179,12 @@ MonoBehaviour:
   _attackRadius: {fileID: 6976365691765161839}
   _icon: {fileID: 21300002, guid: 9d79397aa80558043b45ba266390de4d, type: 3}
   _name: "\u0421\u0442\u0440\u0435\u043B\u043A\u043E\u0432\u0430\u044F \u0411\u0430\u0448\u043D\u044F"
-  _searchArea: 3
+  _price: 50
+  SearchArea: 3
+  _arrow: {fileID: 2430092291049305410, guid: bfc0b3d0dee2b6540b4026842837b311, type: 3}
+  _shootPoint: {fileID: 6976365691871653178}
   _attackSpeed: 0.7
   _damage: 3
-  _price: 50
-  _bullet: {fileID: 2430092291049305410, guid: bfc0b3d0dee2b6540b4026842837b311, type: 3}
-  _shootPoint: {fileID: 6976365691871653178}
---- !u!114 &217357324464076926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6976365692277186892}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c9bbac277d816f478c2b4e77e941e4f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4753871131365039821
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -211,11 +198,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2389198331048698272, guid: d64dfa9ae1117fe4baa04d1a3a3ab103, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2389198331048698272, guid: d64dfa9ae1117fe4baa04d1a3a3ab103, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.191
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2389198331048698272, guid: d64dfa9ae1117fe4baa04d1a3a3ab103, type: 3}
       propertyPath: m_LocalPosition.z

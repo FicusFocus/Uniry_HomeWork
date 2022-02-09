@@ -1,13 +1,11 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using TMPro;
 
 public class TowerView : MonoBehaviour
 {
-    [SerializeField] private TMP_Text _lable;
-    [SerializeField] private TMP_Text _price;
-    [SerializeField] private TMP_Text _radius;
+    [SerializeField] private TMP_Text _lable, _price, _radius;
     [SerializeField] private Image _icon;
     [SerializeField] private Button _sellButton;
 
@@ -38,5 +36,10 @@ public class TowerView : MonoBehaviour
     private void OnButtonClick()
     {
         SellButtonClick?.Invoke(_tower, this);
+    }
+
+    private void DestoyMe()
+    {
+        Destroy(gameObject);
     }
 }

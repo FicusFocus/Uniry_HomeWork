@@ -6,7 +6,8 @@ public class BuildController : MonoBehaviour
 {
     [SerializeField] private List<Transform> _placesPosition;
     [SerializeField] private PlaceForBuild _template;
-    [SerializeField] private Shop _shop; 
+    [SerializeField] private Transform _towersContainer; 
+    [SerializeField] private Shop _shop;
 
     private PlaceForBuild[] _places;
     private PlaceForBuild _chosenPlace;
@@ -21,14 +22,11 @@ public class BuildController : MonoBehaviour
         _shop.TowerBuyed -= OnTowerBuyed;
     }
 
-
     private void Start()
     {
         InstantiateBuildPlaces();
         SetShopPanelActive(false);
     }
-
-    
 
     private void SetShopPanelActive(bool isActive)
     {
@@ -80,6 +78,7 @@ public class BuildController : MonoBehaviour
 
     private void BuildTower(PlaceForBuild place, Tower tower)
     {
-        Instantiate(tower, place.transform.position, Quaternion.identity, place.transform);
+        Instantiate(tower, place.transform.position, Quaternion.identity, _towersContainer);
+        place.gameObject.SetActive(false);
     }
 }

@@ -2,12 +2,14 @@ using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private List<Wave> _wave;
+    [SerializeField] private List<Wave> _waves;
     [SerializeField] private Transform _spawnPoint;
     [SerializeField] private Transform _container;
+    [SerializeField] private Player _player;
     [SerializeField] private float _delay;
 
     private Wave _currentWave;
@@ -21,10 +23,6 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         SetWave(_currentWaveNumber);        
-    }
-
-    private void Start()
-    {
     }
 
     private void Update()
@@ -46,19 +44,20 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        if (_alreadySpawned == _totalEnemyesAmount)
+        if (_alreadySpawned == _totalEnemyesAmount && _currentWaveNumber == _waves.Count)
         {
             Debug.Log("Волна пройдена");
+            _currentWave = null;
         }
     }
 
     private void SetWave(int index)
     {
-        if (index > _wave.Count)
+        if (index > _waves.Count)
             return;
 
         _totalEnemyesAmount = 0;
-        _currentWave = _wave[index];
+        _currentWave = _waves[index];
 
         for (int i = 0; i < _currentWave.EnemyType.Count; i++)
             _totalEnemyesAmount += _currentWave.EnemyType[i].Amount;
@@ -66,14 +65,22 @@ public class EnemySpawner : MonoBehaviour
 
     private int GetRandomenemy()
     {
-        return Random.Range(0, _currentWave.EnemyType.Count);
+        return UnityEngine.Random.Range(0, _currentWave.EnemyType.Count);
     }
 
     private void SpawnEnemy(Enemy tamplate)
     {
         var newEnemy = Instantiate(tamplate, _spawnPoint.position, Quaternion.identity, _container);
         EnemySpawned?.Invoke(newEnemy);
+        newEnemy.Died += OnEnemyDied;
         _alreadySpawned++;
+    }
+
+    private void OnEnemyDied(Enemy enemy)
+    {
+        _player.AddMoney(enemy.Revard);
+        enemy.Died -= OnEnemyDied;
+
     }
 }
 

@@ -22,13 +22,12 @@ public class Shop : MonoBehaviour
     private void AddTowerView(Tower tower)
     {
         var view = Instantiate(_towerView, _conteiner);
-        view.SellButtonClick += OnSellButtonClick;
-        _towerView.Renderer(tower);
+        view.Renderer(tower);
+        view.SellButtonClick += OnSellButtonClick; //Где отписаться то?
     }
 
     private void OnSellButtonClick(Tower tower, TowerView towerView)
     {
-        //Debug.Log("Clicked");
         if (tower == null || towerView == null)
             return;
         TrySellTower(tower, towerView);
@@ -36,14 +35,12 @@ public class Shop : MonoBehaviour
 
     private void TrySellTower(Tower tower, TowerView towerView)
     {
-        Debug.Log(tower.Price + " - price");
-        Debug.Log(_player.Money + " - money");
 
         if (tower.Price <= _player.Money)
         {
             _player.BuyTower(tower);
-            TowerBuyed?.Invoke(tower);
-            towerView.SellButtonClick -= OnSellButtonClick;
+            TowerBuyed?.Invoke(tower); // Если отписаться тут то отписывается от всех кнопок на тавер вью почмеуто
+            IsActive(false);
         }
     }
 

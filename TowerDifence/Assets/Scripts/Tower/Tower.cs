@@ -1,69 +1,37 @@
 using UnityEngine;
 
-public abstract class Tower : MonoBehaviour //SkiptableObject
+public abstract class Tower : MonoBehaviour //SkiptableObject?
 {
     [SerializeField] private GameObject _attackRadius;
     [SerializeField] private Sprite _icon;
     [SerializeField] private string _name;
-    [SerializeField] private float _searchArea;
-    [SerializeField] private float _attackSpeed;
-    [SerializeField] private int _damage;
     [SerializeField] private int _price;
 
-    private bool _enemyFinded;
-    private Enemy _target;
-    private float _timeAfterLastAtteck = 0;
+    [SerializeField] protected float SearchArea;
 
-    public float AttackSpeed => _attackSpeed;
+    private bool _isAttackRadiusVisable = false;
+
     public Sprite Icon => _icon;
     public string Name => _name;
-    public int Damage => _damage;
     public int Price => _price;
-    public float SerchArea => _searchArea;
+    public float SerchArea => SearchArea;
 
     private void Start()
     {
-        _attackRadius.transform.localScale = new Vector3(_searchArea, _searchArea, _searchArea);
-
+        _attackRadius.transform.localScale = new Vector3(SearchArea, SearchArea, SearchArea);
+        SetRadiusViasble(false);
     }
 
-    private void Update()
+    private void OnMouseDown() //TODO: тут должно быть подругому. “ак же как с PlaceForBuild.
     {
-        if (_target == null)
-        {
-            FindEnemy();
-            return;
-        }
-
-        if (Vector3.Distance(transform.position, _target.transform.position) > _searchArea)
-        {
-            _target = null;
-            _enemyFinded = false;
-        }
-
-        if (_timeAfterLastAtteck >= _attackSpeed && _enemyFinded)
-        {
-            _timeAfterLastAtteck = 0;
-            Attack(_target);
-        }
-
-        _timeAfterLastAtteck += Time.deltaTime;               
+        if (_isAttackRadiusVisable)
+            SetRadiusViasble(false);
+        else
+            SetRadiusViasble(true);
     }
 
-    protected void FindEnemy() 
+    private void SetRadiusViasble(bool value)
     {
-        var hitList = Physics2D.OverlapCircleAll(transform.position, _searchArea);
-
-        foreach (var collider in hitList)
-        {
-            if (collider.TryGetComponent(out Enemy enemy))
-            {
-                _target = enemy;
-                _enemyFinded = true;
-            }
-        }
-    }
-
-    protected virtual void Attack(Enemy enemy) { 
+        _attackRadius.SetActive(value);
     }
 }

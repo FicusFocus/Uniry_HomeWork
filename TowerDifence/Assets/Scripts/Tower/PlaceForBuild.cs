@@ -11,7 +11,6 @@ public class PlaceForBuild : MonoBehaviour
 
     private SpriteRenderer _spriteRenderer;
     private Sprite _currentSprite;
-    private bool _isActive;
 
     public event UnityAction DontActive;
     public event UnityAction<PlaceForBuild> PlaceChoosing;
@@ -46,6 +45,4 @@ public class PlaceForBuild : MonoBehaviour
             SetActive(_defaultSprite);
         }
     }
-
-    
 }
