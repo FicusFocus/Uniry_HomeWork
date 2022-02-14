@@ -23,7 +23,7 @@ public class Shop : MonoBehaviour
     {
         var view = Instantiate(_towerView, _conteiner);
         view.Renderer(tower);
-        view.SellButtonClick += OnSellButtonClick; //Где отписаться то?
+        view.SellButtonClick += OnSellButtonClick;
     }
 
     private void OnSellButtonClick(Tower tower, TowerView towerView)
@@ -39,7 +39,7 @@ public class Shop : MonoBehaviour
         if (tower.Price <= _player.Money)
         {
             _player.BuyTower(tower);
-            TowerBuyed?.Invoke(tower); // Если отписаться тут то отписывается от всех кнопок на тавер вью почмеуто
+            TowerBuyed?.Invoke(tower);
             IsActive(false);
         }
     }

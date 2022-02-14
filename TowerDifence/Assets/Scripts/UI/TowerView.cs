@@ -27,7 +27,7 @@ public class TowerView : MonoBehaviour
     {
         _tower = tower;
 
-        _lable.text = _tower.Name;
+        _lable.text = _tower.Name + " - " + _tower.Description;
         _price.text = "Стоимость - " + _tower.Price.ToString();
         _radius.text = "Радиус - " + _tower.SerchArea.ToString();
         _icon.sprite = _tower.Icon;

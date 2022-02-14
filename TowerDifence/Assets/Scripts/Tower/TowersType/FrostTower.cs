@@ -14,40 +14,9 @@ public class FrostTower : Tower
         FindEnemyes();
 
         if (_targets.Count > 0)
-        {
-            foreach (var newTarget in _targets)
-            {
-                bool alreadyFrozen = false;
+            TryToAddInFrozenEnemyes();
 
-                foreach (var enemy in _frozenEnemyes)
-                {
-                    if (enemy == newTarget)
-                        alreadyFrozen = true;
-                }
-
-                if (alreadyFrozen)
-                    continue;
-
-                FreezTraget(newTarget);
-                _frozenEnemyes.Add(newTarget);
-            }
-
-            _targets.Clear();
-        }
-
-        foreach (var frozenEnemy in _frozenEnemyes)
-        {
-            var enemyPosition = frozenEnemy.transform.position;
-            var towerPosition = transform.position;
-
-            if (Vector3.Distance(enemyPosition, towerPosition) > SearchArea + 0.3f)
-            {
-                frozenEnemy.SetMovespeed(frozenEnemy.BaseMoveSpeed);
-                frozenEnemy.SetNewColor(frozenEnemy.BaceColor);
-                _frozenEnemyes.Remove(frozenEnemy);
-                return;
-            }
-        }
+        _targets.Clear();
     }
 
     private void FindEnemyes()
@@ -58,6 +27,26 @@ public class FrostTower : Tower
         {
             if (collider.TryGetComponent(out Enemy enemy))
                 _targets.Add(enemy);
+        }
+    }
+
+    private void TryToAddInFrozenEnemyes()
+    {
+        foreach (var newTarget in _targets)
+        {
+            bool alreadyFrozen = false;
+
+            foreach (var enemy in _frozenEnemyes)
+            {
+                if (enemy == newTarget)
+                    alreadyFrozen = true;
+            }
+
+            if (alreadyFrozen)
+                continue;
+
+            FreezTraget(newTarget);
+            _frozenEnemyes.Add(newTarget);
         }
     }
 

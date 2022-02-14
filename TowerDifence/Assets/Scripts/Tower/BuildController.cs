@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +10,7 @@ public class BuildController : MonoBehaviour
 
     private PlaceForBuild[] _places;
     private PlaceForBuild _chosenPlace;
+    private float _towerAudioSourceStartValue = 1;
 
     private void OnEnable()
     {
@@ -78,7 +78,13 @@ public class BuildController : MonoBehaviour
 
     private void BuildTower(PlaceForBuild place, Tower tower)
     {
-        Instantiate(tower, place.transform.position, Quaternion.identity, _towersContainer);
+        var newTower = Instantiate(tower, place.transform.position, Quaternion.identity, _towersContainer);
+        newTower.SetAudioSourceValue(_towerAudioSourceStartValue);
         place.gameObject.SetActive(false);
+    }
+
+    public void SetTowerAudioSourceStartValue(float value)
+    {
+        _towerAudioSourceStartValue = value;
     }
 }

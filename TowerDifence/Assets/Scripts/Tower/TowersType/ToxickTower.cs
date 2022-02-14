@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,45 +16,24 @@ public class ToxickTower : Tower
     {
         _lastAttackTime += Time.deltaTime;
 
-        if (_lastAttackTime >= _delay && _poisoningTargets.Count != 0)
+        if (_lastAttackTime >= _delay)
         {
-            HitTargets();
+            TryFindTargets();
+
+            if (_targets.Count > 0)
+            {
+                foreach (var target in _targets)
+                    TryToAddInPoisoningTargets(target);
+
+                _targets.Clear();
+                ClearPoisoningTargetsList();
+            }
+
             _lastAttackTime = 0;
         }
     }
 
-    private void FixedUpdate()
-    {
-        _targets = TryFindTargets();
-
-        if (_targets.Count == 0)
-            return;
-
-        if (_targets.Count > 0)
-        {
-            foreach (var target in _targets)
-                AddToPoisoningTargets(target);
-
-            _targets.Clear();
-        }
-
-        foreach (var target in _poisoningTargets)
-        {
-            var targetPosition = target.transform.position;
-            var towerPosition = transform.position;
-
-            var distacne = Vector3.Distance(targetPosition, towerPosition);
-
-            if (distacne > SerchArea + 0.3f)
-            {
-                target.SetNewColor(target.BaceColor);
-                _poisoningTargets.Remove(target);
-                return;
-            }
-        }
-    }
-
-    private void AddToPoisoningTargets(Enemy target)
+    private void TryToAddInPoisoningTargets(Enemy target)
     {
         if (_poisoningTargets.Count == 0)
         {
@@ -62,15 +42,15 @@ public class ToxickTower : Tower
             return;
         }
 
-        bool alreadyFrozen = false;
+        bool alreadyPoison = false;
 
         foreach (var poisoningTarget in _poisoningTargets)
         {
             if (poisoningTarget == target)
-                alreadyFrozen = true;
+                alreadyPoison = true;
         }
 
-        if (alreadyFrozen == false)
+        if (alreadyPoison == false)
         {
             _poisoningTargets.Add(target);
             PoisonTarget(target);
@@ -83,13 +63,7 @@ public class ToxickTower : Tower
         target.TakeDamage(_damage);
     }
 
-    private void HitTargets()
-    {
-        foreach (var target in _poisoningTargets)
-            target.TakeDamage(_damage);
-    }
-
-    private List<Enemy> TryFindTargets()
+    private void TryFindTargets()
     {
         var targetList = new List<Enemy>();
         var hitList = Physics2D.OverlapCircleAll(transform.position, SearchArea);
@@ -101,6 +75,14 @@ public class ToxickTower : Tower
                 targetList.Add(enemy);
         }
 
-        return targetList;
+        _targets = targetList;
+    }
+
+    private void ClearPoisoningTargetsList()
+    {
+        foreach (var item in _poisoningTargets)
+            item.SetNewColor(item.BaceColor);
+
+        _poisoningTargets.Clear();
     }
 }
