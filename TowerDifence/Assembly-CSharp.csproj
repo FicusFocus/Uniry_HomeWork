@@ -67,7 +67,7 @@
     <Compile Include="Assets\Scenes\Typed\MainMenu.cs" />
     <Compile Include="Assets\ImportPaceges\TypedScenes\Samples\Scripts\MultiHandler.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyPathSetter.cs" />
-    <Compile Include="Assets\Scripts\Tower\ToxickTower.cs" />
+    <Compile Include="Assets\Scripts\Tower\TowersType\ToxickTower.cs" />
     <Compile Include="Assets\Scripts\MiainMenu\MainMenuPanel.cs" />
     <Compile Include="Assets\ImportPaceges\TypedScenes\Core\ITypedAwakeHandler.cs" />
     <Compile Include="Assets\Scripts\MiainMenu\MainMenuAudiioController.cs" />

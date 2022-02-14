@@ -33,7 +33,7 @@ public class MainMenuPanel : MonoBehaviour
 
     private void OnExitButtonClick()
     {
-        //TODO: выход.
+        Application.Quit();
     }
 
     private void OnSettingsButtonClick()
